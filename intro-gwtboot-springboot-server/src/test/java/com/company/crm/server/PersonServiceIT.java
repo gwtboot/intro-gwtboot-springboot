@@ -25,7 +25,7 @@ public class PersonServiceIT {
     }
 
     @Test
-    void get_all_persons_ok() {
+    void get_all_persons_result_one_person() {
         prepareData();
 
         List<Person> persons = personService.getPersons();
