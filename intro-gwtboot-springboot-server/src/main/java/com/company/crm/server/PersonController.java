@@ -1,5 +1,7 @@
 package com.company.crm.server;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.example.api.ErrorDto;
-import com.example.api.PersonApi;
-import com.example.api.PersonDto;
-import com.example.api.PersonEndpoint;
-import com.example.api.PersonException;
+import com.company.crm.shared.ErrorDto;
+import com.company.crm.shared.PersonApi;
+import com.company.crm.shared.PersonDto;
+import com.company.crm.shared.PersonEndpoint;
+import com.company.crm.shared.PersonException;
+import com.company.crm.shared.PersonType;
 
 @CrossOrigin
 @RestController
@@ -34,9 +37,20 @@ public class PersonController implements PersonApi {
 	public List<PersonDto> getPersons() {
 		logger.info("Controller: getPersons");
 
-		List<PersonDto> persons = personService.getPersons();
+		List<Person> persons = personService.getPersons();
 
-		return persons;
+		List<PersonDto> personsList = new ArrayList<>();
+		
+		for (Person person : persons) {
+			PersonDto personNew = new PersonDto();
+			personNew.setDate(new Date());
+			personNew.setName(person.getName() + " - " + person.getNickname());
+			personNew.setPersonType(PersonType.COOL);
+
+			personsList.add(personNew);
+		}
+
+		return personsList;
 	}
 
 	@Override

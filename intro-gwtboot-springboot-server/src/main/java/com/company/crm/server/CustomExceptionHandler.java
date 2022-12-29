@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.example.api.ErrorDto;
+import com.company.crm.shared.ErrorDto;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {

@@ -10,8 +10,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>intro-gwtboot-springboot-api</module>
-		<module>intro-gwtboot-springboot-client</module>
+		<module>intro-gwtboot-springboot-shared</module>
 		<module>intro-gwtboot-springboot-server</module>
 	</modules>
 

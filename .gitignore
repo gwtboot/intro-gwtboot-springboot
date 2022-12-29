@@ -27,3 +27,12 @@ hs_err_pid*
 
 # DS_Store
 .DS_Store
+
+# STS
+.sts*
+.classpath
+.project
+.factorypath
+.settings
+
+target
