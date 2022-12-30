@@ -12,12 +12,12 @@ import org.dominokit.domino.ui.lists.ListItem;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 
-public class TodoItemRenderer implements ListGroup.ItemRenderer<TodoItem> {
+public class PersonRenderer implements ListGroup.ItemRenderer<PersonDto> {
 
-    private Consumer<TodoItem> onCheckHandler = todoItem -> {};
+    private Consumer<PersonDto> onCheckHandler = todoItem -> {};
 
     @Override
-    public void onRender(ListGroup<TodoItem> listGroup, ListItem<TodoItem> listItem) {
+    public void onRender(ListGroup<PersonDto> listGroup, ListItem<PersonDto> listItem) {
         listItem.css(Styles.padding_10)
                 .appendChild(FlexLayout.create().setJustifyContent(
                         FlexJustifyContent.SPACE_AROUND)
@@ -36,7 +36,7 @@ public class TodoItemRenderer implements ListGroup.ItemRenderer<TodoItem> {
                 );
     }
 
-    public void setOnCheckHandler(Consumer<TodoItem> onCheckHandler) {
+    public void setOnCheckHandler(Consumer<PersonDto> onCheckHandler) {
         this.onCheckHandler = onCheckHandler;
     }
     

@@ -6,10 +6,10 @@ import javax.inject.Singleton;
 @Singleton
 public class AppWebApp {
 
-	private HelloWorldComposite helloWorldComposite;
+	private HomeComposite helloWorldComposite;
 
 	@Inject
-	public AppWebApp(HelloWorldComposite helloWorldComposite) {
+	public AppWebApp(HomeComposite helloWorldComposite) {
 		this.helloWorldComposite = helloWorldComposite;
 	}
 }

@@ -2,7 +2,7 @@ package com.company.crm.client;
 
 import java.io.Serializable;
 
-public class TodoItem implements Serializable {
+public class PersonDto implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -10,10 +10,10 @@ public class TodoItem implements Serializable {
 
 	private String description;
 
-	public TodoItem() {
+	public PersonDto() {
 	}
 
-	public TodoItem(String title, String description) {
+	public PersonDto(String title, String description) {
 		this.title = title;
 		this.description = description;
 	}

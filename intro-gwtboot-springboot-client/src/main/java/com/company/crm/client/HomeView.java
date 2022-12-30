@@ -1,7 +1,7 @@
 package com.company.crm.client;
 
-import static com.company.crm.client.HelloWorldClientBundle.BUNDLE;
-import static com.company.crm.client.HelloWorldClientBundle.CONSTANTS;
+import static com.company.crm.client.HomeClientBundle.BUNDLE;
+import static com.company.crm.client.HomeClientBundle.CONSTANTS;
 
 import java.util.logging.Logger;
 
@@ -27,12 +27,12 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class HelloWorldView {
+public class HomeView {
 
 	private static Logger logger = Logger
-			.getLogger(HelloWorldView.class.getName());
+			.getLogger(HomeView.class.getName());
 
-	public HelloWorldView() {
+	public HomeView() {
 		logger.info("Create HelloWorldView");
 	}
 
@@ -40,8 +40,8 @@ public class HelloWorldView {
 	@Singleton
 	@Inject
 	Layout layout(TextBox titleTextBox, TextArea descriptionTextArea,
-			@Named("todoItemsListGroup") ListGroup<TodoItem> todoItemsListGroup,
-			@Named("doneItemsListGroup") ListGroup<TodoItem> doneItemsListGroup,
+			@Named("todoItemsListGroup") ListGroup<PersonDto> todoItemsListGroup,
+			@Named("doneItemsListGroup") ListGroup<PersonDto> doneItemsListGroup,
 			Button addButton) {
 		Layout layout = Layout.create(CONSTANTS.appTitle()).removeLeftPanel()
 				.show(Theme.BLUE);
@@ -75,22 +75,22 @@ public class HelloWorldView {
 	@Named("todoItemsListGroup")
 	@Provides
 	@Singleton
-	ListGroup<TodoItem> todoItemsListGroup() {
-		ListGroup<TodoItem> todoItemsListGroup = ListGroup.create();
+	ListGroup<PersonDto> todoItemsListGroup() {
+		ListGroup<PersonDto> todoItemsListGroup = ListGroup.create();
 		return todoItemsListGroup;
 	}
 
 	@Provides
 	@Singleton
-	TodoItemRenderer todoItemRenderer() {
-		return new TodoItemRenderer();
+	PersonRenderer todoItemRenderer() {
+		return new PersonRenderer();
 	}
 
 	@Named("doneItemsListGroup")
 	@Provides
 	@Singleton
-	ListGroup<TodoItem> doneItemsListGroup() {
-		ListGroup<TodoItem> doneItemsListGroup = ListGroup.create();
+	ListGroup<PersonDto> doneItemsListGroup() {
+		ListGroup<PersonDto> doneItemsListGroup = ListGroup.create();
 
 		doneItemsListGroup.setItemRenderer((listGroup, listItem) -> {
 			listItem.css(Styles.padding_10).appendChild(

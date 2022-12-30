@@ -5,7 +5,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = { AppModule.class, HelloWorldView.class })
+@Component(modules = { AppModule.class, HomeView.class })
 public interface AppComponent {
 
 	AppWebApp getAppWebApp();

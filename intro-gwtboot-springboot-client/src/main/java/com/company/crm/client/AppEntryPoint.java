@@ -12,7 +12,7 @@ public class AppEntryPoint implements EntryPoint {
 	@Override
 	public void onModuleLoad() {
 		logger.info("Inject clientBundle");
-		HelloWorldClientBundle.BUNDLE.css().ensureInjected();
+		HomeClientBundle.BUNDLE.css().ensureInjected();
 
 		logger.info("Create component Dagger2");
 		DaggerAppComponent.builder().build().getAppWebApp();

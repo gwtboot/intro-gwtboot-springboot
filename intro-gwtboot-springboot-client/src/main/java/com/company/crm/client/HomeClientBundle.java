@@ -8,13 +8,13 @@ import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.CssResource;
 
 @Singleton
-public interface HelloWorldClientBundle extends ClientBundle {
+public interface HomeClientBundle extends ClientBundle {
 
-	HelloWorldClientBundle BUNDLE = GWT.create(HelloWorldClientBundle.class);
+	HomeClientBundle BUNDLE = GWT.create(HomeClientBundle.class);
 
-	HelloWorldConstants CONSTANTS = GWT.create(HelloWorldConstants.class);
+	HomeConstants CONSTANTS = GWT.create(HomeConstants.class);
 
-	interface HelloWorldConstants extends Constants {
+	interface HomeConstants extends Constants {
 		@DefaultStringValue("Person List")
 		String appTitle();
 
@@ -43,12 +43,12 @@ public interface HelloWorldClientBundle extends ClientBundle {
 		String done_items();
 	}
 
-	interface HelloWorldCssResource extends CssResource {
+	interface HomeCssResource extends CssResource {
 		String addButton();
 
 		String doneButton();
 	}
 
-	@Source("helloworld.gss")
-	HelloWorldCssResource css();
+	@Source("home.gss")
+	HomeCssResource css();
 }

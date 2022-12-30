@@ -13,28 +13,28 @@ import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.lists.ListGroup;
 
 @Singleton
-public class HelloWorldComposite {
+public class HomeComposite {
 
     private static Logger logger = Logger
-            .getLogger(HelloWorldComposite.class.getName());
+            .getLogger(HomeComposite.class.getName());
 
     TextBox titleTextBox;
 
     TextArea descriptionTextArea;
 
-    ListGroup<TodoItem> todoItemsListGroup;
+    ListGroup<PersonDto> todoItemsListGroup;
 
-    ListGroup<TodoItem> doneItemsListGroup;
+    ListGroup<PersonDto> doneItemsListGroup;
 
     Button addButton;
 
     Layout layout;
 
     @Inject
-    public HelloWorldComposite(TextBox titleTextBox, TextArea descriptionTextArea,
-                          @Named("todoItemsListGroup") ListGroup<TodoItem> todoItemsListGroup,
-                          @Named("doneItemsListGroup") ListGroup<TodoItem> doneItemsListGroup,
-                          TodoItemRenderer toDoItemRenderer,
+    public HomeComposite(TextBox titleTextBox, TextArea descriptionTextArea,
+                          @Named("todoItemsListGroup") ListGroup<PersonDto> todoItemsListGroup,
+                          @Named("doneItemsListGroup") ListGroup<PersonDto> doneItemsListGroup,
+                          PersonRenderer toDoItemRenderer,
                           Button addButton, Layout layout) {
         logger.info("Create HelloWorldView");
 
@@ -59,7 +59,7 @@ public class HelloWorldComposite {
 
     void handleAddButtonClick() {
         if (!titleTextBox.isEmpty() && !descriptionTextArea.isEmpty()) {
-            TodoItem todoItem = new TodoItem(titleTextBox.getValue(),
+            PersonDto todoItem = new PersonDto(titleTextBox.getValue(),
                     descriptionTextArea.getValue());
 
             todoItemsListGroup.addItem(todoItem);
@@ -69,7 +69,7 @@ public class HelloWorldComposite {
         }
     }
 
-    void handleCheckOkClick(TodoItem todoItem) {
+    void handleCheckOkClick(PersonDto todoItem) {
         todoItemsListGroup.removeItem(todoItem);
         doneItemsListGroup.addItem(todoItem);
     }
