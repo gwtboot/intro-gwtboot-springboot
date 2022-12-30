@@ -1,7 +1,7 @@
-package com.company.crm.client.ui;
+package com.company.crm.client;
 
-import static com.company.crm.client.ui.HelloWorldClientBundle.BUNDLE;
-import static com.company.crm.client.ui.HelloWorldClientBundle.CONSTANTS;
+import static com.company.crm.client.HelloWorldClientBundle.BUNDLE;
+import static com.company.crm.client.HelloWorldClientBundle.CONSTANTS;
 
 import java.util.logging.Logger;
 

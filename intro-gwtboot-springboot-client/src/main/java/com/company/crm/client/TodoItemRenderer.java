@@ -1,4 +1,4 @@
-package com.company.crm.client.ui;
+package com.company.crm.client;
 
 import java.util.function.Consumer;
 

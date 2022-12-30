@@ -2,8 +2,6 @@ package com.company.crm.client;
 
 import javax.inject.Singleton;
 
-import com.company.crm.client.ui.HelloWorldView;
-
 import dagger.Component;
 
 @Singleton

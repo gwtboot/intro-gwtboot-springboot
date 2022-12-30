@@ -1,4 +1,4 @@
-package com.company.crm.client.ui;
+package com.company.crm.client;
 
 import javax.inject.Singleton;
 
@@ -15,7 +15,7 @@ public interface HelloWorldClientBundle extends ClientBundle {
 	HelloWorldConstants CONSTANTS = GWT.create(HelloWorldConstants.class);
 
 	interface HelloWorldConstants extends Constants {
-		@DefaultStringValue("Todo List")
+		@DefaultStringValue("Person List")
 		String appTitle();
 
 		@DefaultStringValue("Title")
@@ -30,16 +30,16 @@ public interface HelloWorldClientBundle extends ClientBundle {
 		@DefaultStringValue("Mark Done")
 		String mark_done();
 
-		@DefaultStringValue("New Todo")
+		@DefaultStringValue("New Person")
 		String new_todo();
 
-		@DefaultStringValue("Add a new todo list item")
+		@DefaultStringValue("Add a new person")
 		String add_new_todo();
 
-		@DefaultStringValue("Todo Items")
+		@DefaultStringValue("Persons")
 		String todo_items();
 
-		@DefaultStringValue("Done Items")
+		@DefaultStringValue("Done Persons")
 		String done_items();
 	}
 

@@ -2,7 +2,6 @@ package com.company.crm.client;
 
 import java.util.logging.Logger;
 
-import com.company.crm.client.ui.HelloWorldClientBundle;
 import com.google.gwt.core.client.EntryPoint;
 
 public class AppEntryPoint implements EntryPoint {
