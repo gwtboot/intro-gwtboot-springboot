@@ -36,7 +36,7 @@ public class HomeComposite {
                           @Named("doneItemsListGroup") ListGroup<PersonDto> doneItemsListGroup,
                           PersonRenderer toDoItemRenderer,
                           Button addButton, Layout layout) {
-        logger.info("Create HelloWorldView");
+        logger.info("Create HomeComposite");
 
         this.titleTextBox = titleTextBox;
         this.descriptionTextArea = descriptionTextArea;

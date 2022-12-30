@@ -33,7 +33,7 @@ public class HomeView {
 			.getLogger(HomeView.class.getName());
 
 	public HomeView() {
-		logger.info("Create HelloWorldView");
+		logger.info("Create HomeView");
 	}
 
 	@Provides
