@@ -12,6 +12,8 @@ import org.dominokit.domino.ui.lists.ListItem;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 
+import com.company.crm.shared.PersonDto;
+
 public class PersonRenderer implements ListGroup.ItemRenderer<PersonDto> {
 
     private Consumer<PersonDto> onCheckHandler = todoItem -> {};
@@ -23,8 +25,8 @@ public class PersonRenderer implements ListGroup.ItemRenderer<PersonDto> {
                         FlexJustifyContent.SPACE_AROUND)
                         .appendChild(FlexItem.create().setFlexGrow(1)
                                 .appendChild(BlockHeader.create(
-                                        listItem.getValue().getTitle(),
-                                        listItem.getValue().getDescription())
+                                        listItem.getValue().getName(),
+                                        listItem.getValue().getDate().toString())
                                         .css(Styles.m_b_0)))
                         .appendChild(FlexItem.create()
                                 .appendChild(Icons.ALL.check_bold_mdi()

@@ -19,6 +19,9 @@ public class PersonDto {
 
 	private PersonType personType;
 
+	public PersonDto() {
+	}
+
 	public String getName() {
 		return name;
 	}

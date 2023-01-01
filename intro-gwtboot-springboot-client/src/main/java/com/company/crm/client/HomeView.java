@@ -23,6 +23,8 @@ import org.dominokit.domino.ui.popover.Tooltip;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.themes.Theme;
 
+import com.company.crm.shared.PersonDto;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -97,8 +99,8 @@ public class HomeView {
 				FlexLayout.create().setJustifyContent(FlexJustifyContent.SPACE_AROUND)
 						.appendChild(FlexItem.create().setFlexGrow(1)
 						.appendChild(BlockHeader.create(
-								listItem.getValue().getTitle(),
-								listItem.getValue().getDescription())
+								listItem.getValue().getName(),
+								listItem.getValue().getDate().toString())
 								.css(Styles.m_b_0))));
 		});
 

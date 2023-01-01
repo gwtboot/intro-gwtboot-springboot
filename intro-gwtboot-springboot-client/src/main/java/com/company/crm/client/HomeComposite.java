@@ -1,5 +1,6 @@
 package com.company.crm.client;
 
+import java.util.Date;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -11,6 +12,8 @@ import org.dominokit.domino.ui.forms.TextArea;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.lists.ListGroup;
+
+import com.company.crm.shared.PersonDto;
 
 @Singleton
 public class HomeComposite {
@@ -59,8 +62,9 @@ public class HomeComposite {
 
     void handleAddButtonClick() {
         if (!titleTextBox.isEmpty() && !descriptionTextArea.isEmpty()) {
-            PersonDto todoItem = new PersonDto(titleTextBox.getValue(),
-                    descriptionTextArea.getValue());
+            PersonDto todoItem = new PersonDto();
+            todoItem.setName(titleTextBox.getValue());
+            todoItem.setDate(new Date());
 
             todoItemsListGroup.addItem(todoItem);
 
