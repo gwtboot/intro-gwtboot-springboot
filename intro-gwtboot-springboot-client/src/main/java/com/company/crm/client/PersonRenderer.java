@@ -16,7 +16,7 @@ import com.company.crm.shared.PersonDto;
 
 public class PersonRenderer implements ListGroup.ItemRenderer<PersonDto> {
 
-    private Consumer<PersonDto> onCheckHandler = todoItem -> {};
+    private Consumer<PersonDto> onCheckHandler = person -> {};
 
     @Override
     public void onRender(ListGroup<PersonDto> listGroup, ListItem<PersonDto> listItem) {

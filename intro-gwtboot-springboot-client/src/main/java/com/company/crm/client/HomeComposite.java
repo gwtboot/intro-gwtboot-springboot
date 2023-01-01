@@ -78,9 +78,9 @@ public class HomeComposite {
         }
     }
 
-    void handleCheckOkClick(PersonDto todoItem) {
-        personListGroup.removeItem(todoItem);
-        donePersonListGroup.addItem(todoItem);
+    void handleCheckOkClick(PersonDto person) {
+        personListGroup.removeItem(person);
+        donePersonListGroup.addItem(person);
     }
 
 }
