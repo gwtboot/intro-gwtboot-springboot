@@ -1,6 +1,7 @@
 package com.company.crm.client;
 
-import java.util.Date;
+import static com.company.crm.client.HomeClientBundle.CONSTANTS;
+
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -8,49 +9,49 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.forms.TextArea;
+import org.dominokit.domino.ui.datepicker.DateBox;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.lists.ListGroup;
 
 import com.company.crm.shared.PersonDto;
+import com.google.gwt.i18n.client.DateTimeFormat;
 
 @Singleton
 public class HomeComposite {
 
-    private static Logger logger = Logger
-            .getLogger(HomeComposite.class.getName());
+    private static Logger logger = Logger.getLogger(HomeComposite.class.getName());
 
-    TextBox titleTextBox;
+    TextBox nameTextBox;
 
-    TextArea descriptionTextArea;
+    DateBox birthdateDateBox;
 
-    ListGroup<PersonDto> todoItemsListGroup;
+    ListGroup<PersonDto> personListGroup;
 
-    ListGroup<PersonDto> doneItemsListGroup;
+    ListGroup<PersonDto> donePersonListGroup;
 
     Button addButton;
 
     Layout layout;
 
     @Inject
-    public HomeComposite(TextBox titleTextBox, TextArea descriptionTextArea,
-                          @Named("todoItemsListGroup") ListGroup<PersonDto> todoItemsListGroup,
-                          @Named("doneItemsListGroup") ListGroup<PersonDto> doneItemsListGroup,
+    public HomeComposite(TextBox nameTextBox, DateBox birthdateDateBox,
+                          @Named("personListGroup") ListGroup<PersonDto> personListGroup,
+                          @Named("donePersonListGroup") ListGroup<PersonDto> donePersonListGroup,
                           PersonRenderer toDoItemRenderer,
                           Button addButton, Layout layout) {
         logger.info("Create HomeComposite");
 
-        this.titleTextBox = titleTextBox;
-        this.descriptionTextArea = descriptionTextArea;
-        this.todoItemsListGroup = todoItemsListGroup;
-        this.doneItemsListGroup = doneItemsListGroup;
+        this.nameTextBox = nameTextBox;
+        this.birthdateDateBox = birthdateDateBox;
+        this.personListGroup = personListGroup;
+        this.donePersonListGroup = donePersonListGroup;
         this.addButton = addButton;
         this.layout = layout;
 
         // Add checkOk and listener
         toDoItemRenderer.setOnCheckHandler(this::handleCheckOkClick);
-        this.todoItemsListGroup.setItemRenderer(toDoItemRenderer);
+        this.personListGroup.setItemRenderer(toDoItemRenderer);
 
         logger.info("Button: " + addButton.toString());
 
@@ -61,21 +62,25 @@ public class HomeComposite {
     }
 
     void handleAddButtonClick() {
-        if (!titleTextBox.isEmpty() && !descriptionTextArea.isEmpty()) {
-            PersonDto todoItem = new PersonDto();
-            todoItem.setName(titleTextBox.getValue());
-            todoItem.setDate(new Date());
+        if (!nameTextBox.isEmpty() && !birthdateDateBox.isEmpty()) {
+            PersonDto person = new PersonDto();
+            person.setName(nameTextBox.getValue());
+            person.setDate(birthdateDateBox.getValue());
+            
+            String pattern = CONSTANTS.birthdateStringFormat();
+            DateTimeFormat dateFormat = DateTimeFormat.getFormat(pattern);
+            person.setFormattedDate(dateFormat.format(person.getDate()));
 
-            todoItemsListGroup.addItem(todoItem);
+            personListGroup.addItem(person);
 
-            titleTextBox.setValue("");
-            descriptionTextArea.setValue("");
+            nameTextBox.setValue("");
+            birthdateDateBox.setValue(null);
         }
     }
 
     void handleCheckOkClick(PersonDto todoItem) {
-        todoItemsListGroup.removeItem(todoItem);
-        doneItemsListGroup.addItem(todoItem);
+        personListGroup.removeItem(todoItem);
+        donePersonListGroup.addItem(todoItem);
     }
 
 }

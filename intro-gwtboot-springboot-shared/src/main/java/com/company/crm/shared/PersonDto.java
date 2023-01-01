@@ -17,6 +17,8 @@ public class PersonDto {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = PersonEndpoint.DATE_FORMAT)
 	private Date date;
 
+	private String formattedDate;
+
 	private PersonType personType;
 
 	public PersonDto() {
@@ -37,6 +39,14 @@ public class PersonDto {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getFormattedDate() {
+		return formattedDate;
+	}
+
+	public void setFormattedDate(String formattedDate) {
+		this.formattedDate = formattedDate;
 	}
 
 	public PersonType getPersonType() {

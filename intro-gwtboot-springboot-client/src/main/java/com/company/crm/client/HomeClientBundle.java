@@ -15,14 +15,15 @@ public interface HomeClientBundle extends ClientBundle {
 	HomeConstants CONSTANTS = GWT.create(HomeConstants.class);
 
 	interface HomeConstants extends Constants {
+
 		@DefaultStringValue("Person List")
 		String appTitle();
 
-		@DefaultStringValue("Title")
-		String title();
+		@DefaultStringValue("Name")
+		String name();
 
-		@DefaultStringValue("Description")
-		String description();
+		@DefaultStringValue("Birthdate")
+		String birthdate();
 
 		@DefaultStringValue("Add")
 		String add();
@@ -41,9 +42,13 @@ public interface HomeClientBundle extends ClientBundle {
 
 		@DefaultStringValue("Done Persons")
 		String done_items();
+
+		@DefaultStringValue("yyyy/MM/dd")
+		String birthdateStringFormat();
 	}
 
 	interface HomeCssResource extends CssResource {
+
 		String addButton();
 
 		String doneButton();

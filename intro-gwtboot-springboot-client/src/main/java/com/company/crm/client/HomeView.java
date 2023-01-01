@@ -11,7 +11,7 @@ import javax.inject.Singleton;
 
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.forms.TextArea;
+import org.dominokit.domino.ui.datepicker.DateBox;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.grid.flex.FlexJustifyContent;
@@ -31,8 +31,7 @@ import dagger.Provides;
 @Module
 public class HomeView {
 
-	private static Logger logger = Logger
-			.getLogger(HomeView.class.getName());
+	private static Logger logger = Logger.getLogger(HomeView.class.getName());
 
 	public HomeView() {
 		logger.info("Create HomeView");
@@ -41,21 +40,21 @@ public class HomeView {
 	@Provides
 	@Singleton
 	@Inject
-	Layout layout(TextBox titleTextBox, TextArea descriptionTextArea,
-			@Named("todoItemsListGroup") ListGroup<PersonDto> todoItemsListGroup,
-			@Named("doneItemsListGroup") ListGroup<PersonDto> doneItemsListGroup,
+	Layout layout(TextBox nameTextBox, DateBox birthdateDateBox,
+			@Named("personListGroup") ListGroup<PersonDto> personListGroup,
+			@Named("donePersonListGroup") ListGroup<PersonDto> donePersonListGroup,
 			Button addButton) {
 		Layout layout = Layout.create(CONSTANTS.appTitle()).removeLeftPanel()
 				.show(Theme.BLUE);
 		layout.getContentPanel().appendChild(
 				Card.create(CONSTANTS.new_todo(), CONSTANTS.add_new_todo())
-						.appendChild(titleTextBox.element())
-						.appendChild(descriptionTextArea.element())
+						.appendChild(nameTextBox.element())
+						.appendChild(birthdateDateBox.element())
 						.appendChild(addButton.element()).element());
 		layout.getContentPanel().appendChild(Card.create(CONSTANTS.todo_items())
-				.appendChild(todoItemsListGroup.element()).element());
+				.appendChild(personListGroup.element()).element());
 		layout.getContentPanel().appendChild(Card.create(CONSTANTS.done_items())
-				.appendChild(doneItemsListGroup.element()).element());
+				.appendChild(donePersonListGroup.element()).element());
 
 		logger.info("Button: " + addButton.toString());
 
@@ -64,22 +63,22 @@ public class HomeView {
 
 	@Provides
 	@Singleton
-	TextBox titleTextBox() {
-		return TextBox.create(CONSTANTS.title()).floating();
+	TextBox nameTextBox() {
+		return TextBox.create(CONSTANTS.name()).floating();
 	}
 
 	@Provides
 	@Singleton
-	TextArea descriptionTextArea() {
-		return TextArea.create(CONSTANTS.description()).floating().setRows(1);
+	DateBox birthdateDateBox() {
+		return DateBox.create(CONSTANTS.birthdate()).setPattern("yyyy/MM/dd");
 	}
 
-	@Named("todoItemsListGroup")
+	@Named("personListGroup")
 	@Provides
 	@Singleton
-	ListGroup<PersonDto> todoItemsListGroup() {
-		ListGroup<PersonDto> todoItemsListGroup = ListGroup.create();
-		return todoItemsListGroup;
+	ListGroup<PersonDto> personListGroup() {
+		ListGroup<PersonDto> personListGroup = ListGroup.create();
+		return personListGroup;
 	}
 
 	@Provides
@@ -88,23 +87,23 @@ public class HomeView {
 		return new PersonRenderer();
 	}
 
-	@Named("doneItemsListGroup")
+	@Named("donePersonListGroup")
 	@Provides
 	@Singleton
-	ListGroup<PersonDto> doneItemsListGroup() {
-		ListGroup<PersonDto> doneItemsListGroup = ListGroup.create();
+	ListGroup<PersonDto> donePersonListGroup() {
+		ListGroup<PersonDto> donePersonListGroup = ListGroup.create();
 
-		doneItemsListGroup.setItemRenderer((listGroup, listItem) -> {
+		donePersonListGroup.setItemRenderer((listGroup, listItem) -> {
 			listItem.css(Styles.padding_10).appendChild(
-				FlexLayout.create().setJustifyContent(FlexJustifyContent.SPACE_AROUND)
-						.appendChild(FlexItem.create().setFlexGrow(1)
-						.appendChild(BlockHeader.create(
-								listItem.getValue().getName(),
-								listItem.getValue().getDate().toString())
-								.css(Styles.m_b_0))));
+					FlexLayout.create().setJustifyContent(FlexJustifyContent.SPACE_AROUND)
+							.appendChild(FlexItem.create().setFlexGrow(1)
+									.appendChild(BlockHeader.create(
+											listItem.getValue().getName(),
+											listItem.getValue().getFormattedDate())
+											.css(Styles.m_b_0))));
 		});
 
-		return doneItemsListGroup;
+		return donePersonListGroup;
 	}
 
 	@Provides
@@ -115,9 +114,9 @@ public class HomeView {
 		tooltip(addButton);
 		return addButton;
 	}
-	
+
 	Tooltip tooltip(Button addButton) {
-        return Tooltip.create(addButton.element(), CONSTANTS.add());
-    }
+		return Tooltip.create(addButton.element(), CONSTANTS.add());
+	}
 
 }
