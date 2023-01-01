@@ -83,7 +83,7 @@ public class HomeView {
 
 	@Provides
 	@Singleton
-	PersonRenderer todoItemRenderer() {
+	PersonRenderer personItemRenderer() {
 		return new PersonRenderer();
 	}
 

@@ -38,7 +38,7 @@ public class HomeComposite {
     public HomeComposite(TextBox nameTextBox, DateBox birthdateDateBox,
                           @Named("personListGroup") ListGroup<PersonDto> personListGroup,
                           @Named("donePersonListGroup") ListGroup<PersonDto> donePersonListGroup,
-                          PersonRenderer toDoItemRenderer,
+                          PersonRenderer personItemRenderer,
                           Button addButton, Layout layout) {
         logger.info("Create HomeComposite");
 
@@ -50,8 +50,8 @@ public class HomeComposite {
         this.layout = layout;
 
         // Add checkOk and listener
-        toDoItemRenderer.setOnCheckHandler(this::handleCheckOkClick);
-        this.personListGroup.setItemRenderer(toDoItemRenderer);
+        personItemRenderer.setOnCheckHandler(this::handleCheckOkClick);
+        this.personListGroup.setItemRenderer(personItemRenderer);
 
         logger.info("Button: " + addButton.toString());
 
