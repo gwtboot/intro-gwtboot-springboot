@@ -70,6 +70,26 @@
 					<startupUrls>
 						<url>/app/</url>
 					</startupUrls>
+					<compilerArgs>
+						<arg>-generateJsInteropExports</arg>
+						<arg>-compileReport</arg>
+						<arg>-style</arg>
+						<arg>PRETTY</arg>
+					</compilerArgs>
+					<devmodeArgs>
+						<arg>-logLevel</arg>
+						<arg>INFO</arg>
+						<arg>-generateJsInteropExports</arg>
+						<arg>-style</arg>
+						<arg>PRETTY</arg>
+					</devmodeArgs>
+					<codeserverArgs>
+						<arg>-logLevel</arg>
+						<arg>INFO</arg>
+						<arg>-generateJsInteropExports</arg>
+						<arg>-style</arg>
+						<arg>PRETTY</arg>
+					</codeserverArgs>
 				</configuration>
 			</plugin>
 		</plugins>
