@@ -20,7 +20,8 @@ public class PersonDto {
 	private PersonType personType;
 
 	public PersonDto() {
-	}
+   		// Empty Constructor
+ 	}
 
 	public String getName() {
 		return name;
