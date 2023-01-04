@@ -2,8 +2,8 @@
 
 <module rename-to="app">
 	<!-- Base -->
-	<inherits name="com.company.crm.AppBase"/>
+	<inherits name="com.company.crm.AppBase" />
 
 	<!-- Entry Point -->
-	<entry-point class='com.company.crm.client.AppEntryPoint'/>
+	<entry-point class="com.company.crm.client.AppEntryPoint" />
 </module>

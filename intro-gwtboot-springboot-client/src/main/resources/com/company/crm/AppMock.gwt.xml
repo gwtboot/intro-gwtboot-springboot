@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<module rename-to='app'>
+<module rename-to="app">
     <!-- Base -->
-	<inherits name="com.company.crm.AppBase"/>
+    <inherits name="com.company.crm.AppBase" />
 
     <!-- Compiler agent - we only need to compile for one web browser in development -->
     <!-- If you want to use SDBG for debugging you need to use Chrome == safari -->
     <set-property name="user.agent" value="safari" />
 
     <!-- SuperDev Mode -->
-    <set-configuration-property name="devModeRedirectEnabled"
-                                value="true" />
+    <set-configuration-property name="devModeRedirectEnabled" value="true" />
     <set-property name="compiler.useSourceMaps" value="true" />
 
     <set-property name="compiler.emulatedStack" value="true" />
-    <set-configuration-property name="compiler.emulatedStack.recordFileNames"
-                                value="true" />
+    <set-configuration-property name="compiler.emulatedStack.recordFileNames" value="true" />
 
     <!-- Logging -->
     <set-property name="gwt.logging.logLevel" value="INFO" />
 
     <!-- Use Mock -->
-	<source path='mock' />
+    <source path="mock" />
+    <source path="client" />
 
-	<!-- Specify the app entry point class. -->
-	<entry-point class='com.company.crm.mock.AppMockEntryPoint' />
+    <!-- Specify the app entry point class. -->
+    <entry-point class="com.company.crm.mock.AppMockEntryPoint" />
 </module>

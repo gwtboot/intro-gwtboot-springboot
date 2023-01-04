@@ -73,6 +73,7 @@
 					<compilerArgs>
 						<arg>-generateJsInteropExports</arg>
 						<arg>-compileReport</arg>
+						<arg>-strict</arg>
 						<arg>-style</arg>
 						<arg>PRETTY</arg>
 					</compilerArgs>
@@ -80,6 +81,7 @@
 						<arg>-logLevel</arg>
 						<arg>INFO</arg>
 						<arg>-generateJsInteropExports</arg>
+						<arg>-strict</arg>
 						<arg>-style</arg>
 						<arg>PRETTY</arg>
 					</devmodeArgs>
@@ -87,6 +89,7 @@
 						<arg>-logLevel</arg>
 						<arg>INFO</arg>
 						<arg>-generateJsInteropExports</arg>
+						<arg>-strict</arg>
 						<arg>-style</arg>
 						<arg>PRETTY</arg>
 					</codeserverArgs>
@@ -120,6 +123,7 @@
 							<compilerArgs>
 								<arg>-generateJsInteropExports</arg>
 								<arg>-compileReport</arg>
+								<arg>-strict</arg>
 								<arg>-style</arg>
 								<arg>PRETTY</arg>
 							</compilerArgs>
@@ -127,6 +131,7 @@
 								<arg>-logLevel</arg>
 								<arg>INFO</arg>
 								<arg>-generateJsInteropExports</arg>
+								<arg>-strict</arg>
 								<arg>-style</arg>
 								<arg>PRETTY</arg>
 							</devmodeArgs>
@@ -134,6 +139,7 @@
 								<arg>-logLevel</arg>
 								<arg>INFO</arg>
 								<arg>-generateJsInteropExports</arg>
+								<arg>-strict</arg>
 								<arg>-style</arg>
 								<arg>PRETTY</arg>
 							</codeserverArgs>
