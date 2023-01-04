@@ -1,17 +1,19 @@
-package com.company.crm.client;
+package com.company.crm.mock;
 
 import javax.inject.Singleton;
+
+import com.company.crm.client.PersonClientFactory;
 
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class AppModule {
+public class AppMockModule {
 
     @Provides
     @Singleton
     PersonClientFactory personClientFactory() {
-        return PersonClientFactory.INSTANCE;
+        return new PersonMockClientFactory();
     }
 
 }

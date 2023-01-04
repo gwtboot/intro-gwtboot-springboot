@@ -6,8 +6,7 @@ import com.google.gwt.core.client.EntryPoint;
 
 public class AppEntryPoint implements EntryPoint {
 
-	private static Logger logger = Logger
-			.getLogger(AppEntryPoint.class.getName());
+	private static Logger logger = Logger.getLogger(AppEntryPoint.class.getName());
 
 	@Override
 	public void onModuleLoad() {

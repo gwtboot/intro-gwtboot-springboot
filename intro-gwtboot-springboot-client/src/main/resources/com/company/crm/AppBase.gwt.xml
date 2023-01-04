@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module>
+    <!-- Shared -->
+	<inherits name="com.company.crm.Person"/>
+
+    <!-- GWT Boot stuffs -->
+	<inherits name="com.github.gwtboot.starter.Dagger2Starter"/>
+	<inherits name="com.github.gwtboot.starter.DominoStarter"/>
+	<inherits name="com.github.gwtboot.starter.DominoRestStarter"/>
+
+	<!-- Compiler agent -->
+	<set-property name="user.agent" value="gecko1_8,safari" />
+</module>

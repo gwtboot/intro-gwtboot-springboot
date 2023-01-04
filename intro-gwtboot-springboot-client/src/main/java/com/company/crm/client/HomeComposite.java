@@ -34,12 +34,14 @@ public class HomeComposite {
 
     Layout layout;
 
+    PersonClientFactory personClientFactory;
+
     @Inject
     public HomeComposite(TextBox nameTextBox, DateBox birthdateDateBox,
-                          @Named("personListGroup") ListGroup<PersonDto> personListGroup,
-                          @Named("donePersonListGroup") ListGroup<PersonDto> donePersonListGroup,
-                          PersonRenderer personItemRenderer,
-                          Button addButton, Layout layout) {
+            @Named("personListGroup") ListGroup<PersonDto> personListGroup,
+            @Named("donePersonListGroup") ListGroup<PersonDto> donePersonListGroup,
+            PersonRenderer personItemRenderer,
+            Button addButton, Layout layout, PersonClientFactory personClientFactory) {
         logger.info("Create HomeComposite");
 
         this.nameTextBox = nameTextBox;
@@ -48,6 +50,7 @@ public class HomeComposite {
         this.donePersonListGroup = donePersonListGroup;
         this.addButton = addButton;
         this.layout = layout;
+        this.personClientFactory = personClientFactory;
 
         // Add checkOk and listener
         personItemRenderer.setOnCheckHandler(this::handleCheckOkClick);
@@ -66,7 +69,7 @@ public class HomeComposite {
             PersonDto person = new PersonDto();
             person.setName(nameTextBox.getValue());
             person.setDate(birthdateDateBox.getValue());
-            
+
             String pattern = CONSTANTS.birthdateStringFormat();
             DateTimeFormat dateFormat = DateTimeFormat.getFormat(pattern);
             person.setFormattedDate(dateFormat.format(person.getDate()));
@@ -75,7 +78,19 @@ public class HomeComposite {
 
             nameTextBox.setValue("");
             birthdateDateBox.setValue(null);
+
+            // Get data from server
+            getPersons();
         }
+    }
+
+    void getPersons() {
+        personClientFactory.getPersons().onSuccess(response -> {
+            response.forEach(person -> logger
+                    .info("Person: " + person.getName() + " - Date: " + person.getDate() + " - Type: " + person.getPersonType()));
+        }).onFailed(failedResponse -> {
+            logger.info("Error: " + failedResponse.getStatusCode() + "\nMessages: " + failedResponse.getStatusText());
+        }).send();
     }
 
     void handleCheckOkClick(PersonDto person) {

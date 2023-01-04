@@ -36,7 +36,7 @@
 			<version>1.0.0-SNAPSHOT</version>
 			<classifier>sources</classifier>
 		</dependency>
-		
+
 		<!-- GWT Starter DominoUI and Dagger2 -->
 		<dependency>
 			<groupId>com.github.gwtboot</groupId>
@@ -94,4 +94,53 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>development-mock</id>
+			<build>
+				<plugins>
+					<!-- GWT Maven Plugin -->
+					<plugin>
+						<groupId>net.ltgt.gwt.maven</groupId>
+						<artifactId>gwt-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<moduleName>com.company.crm.AppMock</moduleName>
+							<startupUrls>
+								<url>/app/</url>
+							</startupUrls>
+							<skipModule>true</skipModule>
+							<compilerArgs>
+								<arg>-generateJsInteropExports</arg>
+								<arg>-compileReport</arg>
+								<arg>-style</arg>
+								<arg>PRETTY</arg>
+							</compilerArgs>
+							<devmodeArgs>
+								<arg>-logLevel</arg>
+								<arg>INFO</arg>
+								<arg>-generateJsInteropExports</arg>
+								<arg>-style</arg>
+								<arg>PRETTY</arg>
+							</devmodeArgs>
+							<codeserverArgs>
+								<arg>-logLevel</arg>
+								<arg>INFO</arg>
+								<arg>-generateJsInteropExports</arg>
+								<arg>-style</arg>
+								<arg>PRETTY</arg>
+							</codeserverArgs>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
