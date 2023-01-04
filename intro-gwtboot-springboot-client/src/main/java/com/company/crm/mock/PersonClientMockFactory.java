@@ -5,14 +5,15 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.dominokit.rest.shared.request.ServerRequest;
+import org.dominokit.rest.shared.request.service.annotations.Request;
 
 import com.company.crm.client.PersonClientFactory;
 import com.company.crm.shared.ErrorDto;
 import com.company.crm.shared.PersonDto;
 
-public class PersonMockClientFactory extends PersonClientFactory {
+public class PersonClientMockFactory extends PersonClientFactory {
 
-  private static Logger logger = Logger.getLogger(AppMockEntryPoint.class.getName());
+  private static Logger logger = Logger.getLogger(PersonClientMockFactory.class.getName());
 
   List<PersonDto> getPersonDtos() {
     List<PersonDto> personDtos = new ArrayList<>();
@@ -35,6 +36,7 @@ public class PersonMockClientFactory extends PersonClientFactory {
     return instance;
   }
 
+  @Request
   public class PersonClient_getPersons extends ServerRequest<Void, List<PersonDto>> {
     PersonClient_getPersons() {
       logger.info("PersonClient_getPersons");

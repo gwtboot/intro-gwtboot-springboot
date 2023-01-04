@@ -13,7 +13,7 @@ public class AppMockModule {
     @Provides
     @Singleton
     PersonClientFactory personClientFactory() {
-        return new PersonMockClientFactory();
+        return new PersonClientMockFactory();
     }
 
 }
