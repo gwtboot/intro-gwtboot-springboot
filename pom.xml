@@ -14,5 +14,4 @@
     <module>intro-gwtboot-springboot-server</module>
     <module>intro-gwtboot-springboot-client</module>
   </modules>
-
 </project>
