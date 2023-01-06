@@ -64,4 +64,20 @@ public class PersonController implements PersonApi {
 		}
 	}
 
+	@Override
+	@RequestMapping(method = RequestMethod.POST, value = PersonEndpoint.PERSON_LIST)
+	public PersonDto createPerson(PersonDto personDto) {
+		logger.info("Controller: createPerson");
+
+		Person personNew = new Person();
+		personNew.setName(personDto.getName());
+		personNew.setNickname(personDto.getDate().toString());
+
+		Person createPerson = personService.createPerson(personNew);
+
+		logger.info("Created person: " + createPerson.toString());
+
+		return personDto;
+	}
+
 }

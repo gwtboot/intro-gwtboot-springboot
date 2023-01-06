@@ -40,4 +40,10 @@ public class PersonClient implements PersonApi {
 		return resultResponse;
 	}
 
+	@Override
+	public PersonDto createPerson(PersonDto personDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

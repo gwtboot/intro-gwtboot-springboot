@@ -3,6 +3,7 @@ package com.company.crm.client;
 import java.util.List;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 import org.dominokit.rest.shared.request.service.annotations.RequestFactory;
@@ -25,5 +26,10 @@ public interface PersonApiResource extends PersonApi {
 	@GET
 	@Path(PersonEndpoint.PERSON_WITH_ERROR_LIST)
 	List<ErrorDto> getPersonsWithError() throws PersonException;
+
+	@Override
+	@POST
+	@Path(PersonEndpoint.PERSON_LIST)
+	PersonDto createPerson(PersonDto personDto);
 
 }

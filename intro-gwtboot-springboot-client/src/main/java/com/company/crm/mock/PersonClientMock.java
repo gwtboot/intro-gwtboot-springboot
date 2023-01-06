@@ -29,6 +29,12 @@ public class PersonClientMock implements PersonApi {
 		return getPersonErrorDtos();
 	}
 
+	@Override
+	public PersonDto createPerson(PersonDto personDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	List<ErrorDto> getPersonErrorDtos() {
 		List<ErrorDto> personErrorDtos = new ArrayList<>();
 

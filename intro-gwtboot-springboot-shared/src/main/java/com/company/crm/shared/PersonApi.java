@@ -8,4 +8,6 @@ public interface PersonApi {
 
 	List<ErrorDto> getPersonsWithError() throws PersonException;
 
+	PersonDto createPerson(PersonDto personDto);
+
 }

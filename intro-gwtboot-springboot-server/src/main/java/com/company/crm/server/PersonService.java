@@ -26,4 +26,12 @@ public class PersonService {
 
 		return persons;
 	}
+
+	@Transactional
+	public Person createPerson(Person person) {
+		logger.info("Service: createPerson");
+
+		return personRepository.save(person);
+	}
+	
 }
