@@ -11,26 +11,26 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class PersonServiceIT {
 
-    @Autowired
-    PersonRepository personRepository;
-    
-    @Autowired
-    PersonService personService;
+	@Autowired
+	PersonRepository personRepository;
 
-    void prepareData() {
-        Person person1 = new Person();
-        person1.setName("Lofi");
-        person1.setNickname("Dr. Jawa");
-        personRepository.save(person1);
-    }
+	@Autowired
+	PersonService personService;
 
-    @Test
-    void get_all_persons_result_one_person() {
-        prepareData();
+	void prepareData() {
+		Person person1 = new Person();
+		person1.setName("Lofi");
+		person1.setNickname("Dr. Jawa");
+		personRepository.save(person1);
+	}
 
-        List<Person> persons = personService.getPersons();
+	@Test
+	void get_all_persons_result_one_person() {
+		prepareData();
 
-        assertEquals(1, persons.size());
-    }
-    
+		List<Person> persons = personService.getPersons();
+
+		assertEquals(1, persons.size());
+	}
+
 }

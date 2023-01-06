@@ -1,29 +1,43 @@
 package com.company.crm.client;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-
-import org.dominokit.rest.shared.request.service.annotations.RequestFactory;
+import java.util.logging.Logger;
 
 import com.company.crm.shared.ErrorDto;
 import com.company.crm.shared.PersonApi;
 import com.company.crm.shared.PersonDto;
-import com.company.crm.shared.PersonEndpoint;
 import com.company.crm.shared.PersonException;
 
-@RequestFactory
-public interface PersonClient extends PersonApi {
+public class PersonClient implements PersonApi {
+
+	private static Logger logger = Logger.getLogger(PersonClient.class.getName());
 
 	@Override
-	@GET
-	@Path(PersonEndpoint.PERSON_LIST)
-	List<PersonDto> getPersons();
+	public List<PersonDto> getPersons() {
+		List<PersonDto> resultResponse = new ArrayList<>();
+
+		PersonApiResourceFactory.INSTANCE.getPersons().onSuccess(response -> {
+			resultResponse.forEach(person -> logger.info("Person: " + person.getName() + " - Date: " + person.getDate()
+					+ " - Type: " + person.getPersonType()));
+		}).onFailed(failedResponse -> {
+			logger.info("Error: " + failedResponse.getStatusCode() + "\nMessages: " + failedResponse.getStatusText());
+		}).send();
+
+		return resultResponse;
+	}
 
 	@Override
-	@GET
-	@Path(PersonEndpoint.PERSON_WITH_ERROR_LIST)
-	List<ErrorDto> getPersonsWithError() throws PersonException;
+	public List<ErrorDto> getPersonsWithError() throws PersonException {
+		List<ErrorDto> resultResponse = new ArrayList<>();
+
+		PersonApiResourceFactory.INSTANCE.getPersonsWithError().onSuccess(response -> {
+			response.forEach(e -> logger.info("Error Code: " + e.getErrorcode()));
+		}).onFailed(failedResponse -> {
+			logger.info("Error: " + failedResponse.getStatusCode() + "\nMessages: " + failedResponse.getStatusText());
+		}).send();
+
+		return resultResponse;
+	}
 
 }

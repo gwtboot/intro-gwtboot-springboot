@@ -40,7 +40,7 @@ public class PersonController implements PersonApi {
 		List<Person> persons = personService.getPersons();
 
 		List<PersonDto> personsList = new ArrayList<>();
-		
+
 		for (Person person : persons) {
 			PersonDto personNew = new PersonDto();
 			personNew.setDate(new Date());

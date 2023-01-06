@@ -42,19 +42,15 @@ public class HomeView {
 	@Inject
 	Layout layout(TextBox nameTextBox, DateBox birthdateDateBox,
 			@Named("personListGroup") ListGroup<PersonDto> personListGroup,
-			@Named("donePersonListGroup") ListGroup<PersonDto> donePersonListGroup,
-			Button addButton) {
-		Layout layout = Layout.create(CONSTANTS.appTitle()).removeLeftPanel()
-				.show(Theme.BLUE);
+			@Named("donePersonListGroup") ListGroup<PersonDto> donePersonListGroup, Button addButton) {
+		Layout layout = Layout.create(CONSTANTS.appTitle()).removeLeftPanel().show(Theme.BLUE);
 		layout.getContentPanel().appendChild(
-				Card.create(CONSTANTS.new_todo(), CONSTANTS.add_new_todo())
-						.appendChild(nameTextBox.element())
-						.appendChild(birthdateDateBox.element())
-						.appendChild(addButton.element()).element());
-		layout.getContentPanel().appendChild(Card.create(CONSTANTS.todo_items())
-				.appendChild(personListGroup.element()).element());
-		layout.getContentPanel().appendChild(Card.create(CONSTANTS.done_items())
-				.appendChild(donePersonListGroup.element()).element());
+				Card.create(CONSTANTS.new_todo(), CONSTANTS.add_new_todo()).appendChild(nameTextBox.element())
+						.appendChild(birthdateDateBox.element()).appendChild(addButton.element()).element());
+		layout.getContentPanel()
+				.appendChild(Card.create(CONSTANTS.todo_items()).appendChild(personListGroup.element()).element());
+		layout.getContentPanel()
+				.appendChild(Card.create(CONSTANTS.done_items()).appendChild(donePersonListGroup.element()).element());
 
 		logger.info("Button: " + addButton.toString());
 
@@ -94,13 +90,16 @@ public class HomeView {
 		ListGroup<PersonDto> donePersonListGroup = ListGroup.create();
 
 		donePersonListGroup.setItemRenderer((listGroup, listItem) -> {
-			listItem.css(Styles.padding_10).appendChild(
-					FlexLayout.create().setJustifyContent(FlexJustifyContent.SPACE_AROUND)
-							.appendChild(FlexItem.create().setFlexGrow(1)
-									.appendChild(BlockHeader.create(
-											listItem.getValue().getName(),
-											listItem.getValue().getFormattedDate())
-											.css(Styles.m_b_0))));
+			listItem.css(Styles.padding_10)
+					.appendChild(
+							FlexLayout
+									.create().setJustifyContent(
+											FlexJustifyContent.SPACE_AROUND)
+									.appendChild(FlexItem.create().setFlexGrow(1)
+											.appendChild(BlockHeader
+													.create(listItem.getValue().getName(),
+															listItem.getValue().getFormattedDate())
+													.css(Styles.m_b_0))));
 		});
 
 		return donePersonListGroup;

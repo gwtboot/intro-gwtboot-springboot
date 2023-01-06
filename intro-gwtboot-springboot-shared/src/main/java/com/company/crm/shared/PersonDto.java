@@ -22,8 +22,8 @@ public class PersonDto {
 	private PersonType personType;
 
 	public PersonDto() {
-   		// Empty Constructor
- 	}
+		// Empty Constructor
+	}
 
 	public String getName() {
 		return name;

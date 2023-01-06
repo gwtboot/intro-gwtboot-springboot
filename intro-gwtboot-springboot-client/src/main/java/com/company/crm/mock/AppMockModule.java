@@ -2,7 +2,7 @@ package com.company.crm.mock;
 
 import javax.inject.Singleton;
 
-import com.company.crm.client.PersonClientFactory;
+import com.company.crm.shared.PersonApi;
 
 import dagger.Module;
 import dagger.Provides;
@@ -10,10 +10,10 @@ import dagger.Provides;
 @Module
 public class AppMockModule {
 
-    @Provides
-    @Singleton
-    PersonClientFactory personClientFactory() {
-        return new PersonClientMockFactory();
-    }
+	@Provides
+	@Singleton
+	PersonApi personApi() {
+		return new PersonClientMock();
+	}
 
 }

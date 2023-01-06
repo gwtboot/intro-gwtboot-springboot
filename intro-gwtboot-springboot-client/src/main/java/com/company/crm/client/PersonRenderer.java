@@ -16,30 +16,24 @@ import com.company.crm.shared.PersonDto;
 
 public class PersonRenderer implements ListGroup.ItemRenderer<PersonDto> {
 
-    private Consumer<PersonDto> onCheckHandler = person -> {};
+	private Consumer<PersonDto> onCheckHandler = person -> {
+	};
 
-    @Override
-    public void onRender(ListGroup<PersonDto> listGroup, ListItem<PersonDto> listItem) {
-        listItem.css(Styles.padding_10)
-                .appendChild(FlexLayout.create().setJustifyContent(
-                        FlexJustifyContent.SPACE_AROUND)
-                        .appendChild(FlexItem.create().setFlexGrow(1)
-                                .appendChild(BlockHeader.create(
-                                        listItem.getValue().getName(),
-                                        listItem.getValue().getFormattedDate())
-                                        .css(Styles.m_b_0)))
-                        .appendChild(FlexItem.create()
-                                .appendChild(Icons.ALL.check_bold_mdi()
-                                        .setColor(Color.GREEN)
-                                        .clickable()
-                                        .addClickListener(
-                                                addClickEvent -> onCheckHandler.accept(listItem.getValue()))
-                                ))
-                );
-    }
+	@Override
+	public void onRender(ListGroup<PersonDto> listGroup, ListItem<PersonDto> listItem) {
+		listItem.css(Styles.padding_10)
+				.appendChild(
+						FlexLayout.create().setJustifyContent(FlexJustifyContent.SPACE_AROUND)
+								.appendChild(FlexItem.create().setFlexGrow(1).appendChild(BlockHeader
+										.create(listItem.getValue().getName(), listItem.getValue().getFormattedDate())
+										.css(Styles.m_b_0)))
+								.appendChild(FlexItem.create().appendChild(
+										Icons.ALL.check_bold_mdi().setColor(Color.GREEN).clickable().addClickListener(
+												addClickEvent -> onCheckHandler.accept(listItem.getValue())))));
+	}
 
-    public void setOnCheckHandler(Consumer<PersonDto> onCheckHandler) {
-        this.onCheckHandler = onCheckHandler;
-    }
-    
+	public void setOnCheckHandler(Consumer<PersonDto> onCheckHandler) {
+		this.onCheckHandler = onCheckHandler;
+	}
+
 }
