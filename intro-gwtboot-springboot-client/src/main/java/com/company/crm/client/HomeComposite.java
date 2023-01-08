@@ -52,16 +52,16 @@ public class HomeComposite {
 		this.layout = layout;
 		this.personCallbackApi = personCallbackApi;
 
-		// Add checkOk and listener
 		personItemRenderer.setOnCheckHandler(this::handleCheckOkClick);
 		this.personListGroup.setItemRenderer(personItemRenderer);
 
-		logger.info("Button: " + addButton.getTextContent());
+		logger.info("HomeComposite Button: " + addButton.getTextContent());
 
-		// Add button and listener
 		this.addButton.addClickListener(addButtonClickEvent -> {
 			handleAddButtonClick();
 		});
+
+		addPersonsListGroup();
 	}
 
 	void handleAddButtonClick() {

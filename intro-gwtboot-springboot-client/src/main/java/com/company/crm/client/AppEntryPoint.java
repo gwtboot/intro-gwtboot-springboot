@@ -16,10 +16,10 @@ public class AppEntryPoint implements EntryPoint {
 		logger.info("Inject clientBundle");
 		HomeClientBundle.BUNDLE.css().ensureInjected();
 
-		logger.info("Create component Dagger2");
-		DaggerAppComponent.builder().build().getAppWebApp();
-
 		DominoRestConfig.initDefaults();
 		DominoRestConfig.getInstance().setDefaultServiceRoot(PersonEndpoint.SERVER_CONTEXT_PATH);
+
+		logger.info("Create component Dagger2");
+		DaggerAppComponent.builder().build().getAppWebApp();
 	}
 }

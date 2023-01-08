@@ -52,7 +52,7 @@ public class HomeView {
 		layout.getContentPanel()
 				.appendChild(Card.create(CONSTANTS.done_items()).appendChild(donePersonListGroup.element()).element());
 
-		logger.info("Button: " + addButton.toString());
+		logger.info("HomeView Button: " + addButton.getTextContent());
 
 		return layout;
 	}
