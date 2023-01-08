@@ -2,8 +2,6 @@ package com.company.crm.client;
 
 import static com.company.crm.client.HomeClientBundle.CONSTANTS;
 
-import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
@@ -16,8 +14,6 @@ import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.lists.ListGroup;
 
-import com.company.crm.shared.ErrorDto;
-import com.company.crm.shared.PersonApi;
 import com.company.crm.shared.PersonDto;
 import com.company.crm.shared.PersonException;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -39,13 +35,13 @@ public class HomeComposite {
 
 	Layout layout;
 
-	PersonApi personApi;
+	PersonCallbackApi personCallbackApi;
 
 	@Inject
 	public HomeComposite(TextBox nameTextBox, DateBox birthdateDateBox,
 			@Named("personListGroup") ListGroup<PersonDto> personListGroup,
 			@Named("donePersonListGroup") ListGroup<PersonDto> donePersonListGroup, PersonRenderer personItemRenderer,
-			Button addButton, Layout layout, PersonApi personApi) {
+			Button addButton, Layout layout, PersonCallbackApi personCallbackApi) {
 		logger.info("Create HomeComposite");
 
 		this.nameTextBox = nameTextBox;
@@ -54,13 +50,13 @@ public class HomeComposite {
 		this.donePersonListGroup = donePersonListGroup;
 		this.addButton = addButton;
 		this.layout = layout;
-		this.personApi = personApi;
+		this.personCallbackApi = personCallbackApi;
 
 		// Add checkOk and listener
 		personItemRenderer.setOnCheckHandler(this::handleCheckOkClick);
 		this.personListGroup.setItemRenderer(personItemRenderer);
 
-		logger.info("Button: " + addButton.toString());
+		logger.info("Button: " + addButton.getTextContent());
 
 		// Add button and listener
 		this.addButton.addClickListener(addButtonClickEvent -> {
@@ -83,21 +79,38 @@ public class HomeComposite {
 			nameTextBox.setValue("");
 			birthdateDateBox.setValue(null);
 
-			// Get data from server
-			List<PersonDto> persons = personApi.getPersons();
-			persons.stream().forEach(personFromServer -> {
-				personListGroup.addItem(personFromServer);
-			});
+			createPerson(person);
 
-			try {
-				List<ErrorDto> personErrors = personApi.getPersonsWithError();
-				personErrors.stream().forEach(personErrorFromServer -> {
-					logger.log(Level.WARNING, "Error happens: " + personErrorFromServer.getDetail());;
-				});
-			} catch (PersonException e) {
-				logger.log(Level.WARNING, "Error: " + e.getLocalizedMessage());
-			}
+			addPersonsListGroup();
+
+			getPersonsWithError();
 		}
+	}
+
+	void getPersonsWithError() {
+		try {
+			personCallbackApi.getPersonsWithError(errorList -> {
+				logger.info("Callback getPersonsWithError amount: " + errorList.size());
+			});
+		} catch (PersonException e) {
+			logger.warning("Error: " + e.getLocalizedMessage());
+		}
+	}
+
+	void createPerson(PersonDto person) {
+		// Create the person on the server - Async
+		personCallbackApi.createPerson(person, personCreated -> {
+			logger.info("Callback: createPerson: " + personCreated.getName());
+		});
+	}
+
+	void addPersonsListGroup() {
+		// Get data from server - Async
+		personCallbackApi.getPersons(personList -> {
+			logger.info("Callback getPersons amount: " + personList.size());
+
+			personListGroup.addItems(personList);
+		});
 	}
 
 	void handleCheckOkClick(PersonDto person) {

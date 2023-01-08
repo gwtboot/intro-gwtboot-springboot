@@ -5,34 +5,35 @@ import static com.company.crm.client.HomeClientBundle.CONSTANTS;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
+import com.company.crm.client.PersonCallbackApi;
 import com.company.crm.shared.ErrorDto;
-import com.company.crm.shared.PersonApi;
 import com.company.crm.shared.PersonDto;
 import com.company.crm.shared.PersonException;
 import com.google.gwt.i18n.client.DateTimeFormat;
 
-public class PersonClientMock implements PersonApi {
+public class PersonClientMock implements PersonCallbackApi {
 
 	private static Logger logger = Logger.getLogger(PersonClientMock.class.getName());
 
 	@Override
-	public List<PersonDto> getPersons() {
+	public void getPersons(Consumer<List<PersonDto>> callback) {
 		logger.info("Mock: getPersons");
-		return getPersonDtos();
+		callback.accept(getPersonDtos());
 	}
 
 	@Override
-	public List<ErrorDto> getPersonsWithError() throws PersonException {
+	public void getPersonsWithError(Consumer<List<ErrorDto>> callback) throws PersonException {
 		logger.info("Mock: getPersonsWithError");
-		return getPersonErrorDtos();
+		callback.accept(getPersonErrorDtos());
 	}
 
 	@Override
-	public PersonDto createPerson(PersonDto personDto) {
-		// TODO Auto-generated method stub
-		return null;
+	public void createPerson(PersonDto personDto, Consumer<PersonDto> callback) {
+		logger.info("Mock: createPerson");
+		callback.accept(personDto);
 	}
 
 	List<ErrorDto> getPersonErrorDtos() {

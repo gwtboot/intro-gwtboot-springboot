@@ -50,12 +50,18 @@ public class PersonDto {
 	}
 
 	public PersonType getPersonType() {
-		logger.info("getPersonType: " + personType);
+		logger.info("PersonDto: getPersonType: " + personType);
 		return personType;
 	}
 
 	public void setPersonType(PersonType personType) {
 		this.personType = personType;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonDto [name=" + name + ", date=" + date + ", formattedDate=" + formattedDate + ", personType="
+				+ personType + "]";
 	}
 
 }

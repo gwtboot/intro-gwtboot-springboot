@@ -2,6 +2,7 @@ package com.company.crm.server;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ public class PersonServiceIT {
 	void prepareData() {
 		Person person1 = new Person();
 		person1.setName("Lofi");
-		person1.setNickname("Dr. Jawa");
+		person1.setDate(new Date());
 		personRepository.save(person1);
 	}
 

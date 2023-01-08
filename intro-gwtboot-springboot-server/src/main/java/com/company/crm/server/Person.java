@@ -1,5 +1,7 @@
 package com.company.crm.server;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +16,7 @@ public class Person {
 
 	private String name;
 
-	private String nickname;
+	private Date date;
 
 	public String getName() {
 		return name;
@@ -24,12 +26,17 @@ public class Person {
 		this.name = name;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public void setDate(Date date) {
+		this.date = date;
+    }
+	
+	public Date getDate() {
+		return date;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", name=" + name + ", date=" + date + "]";
 	}
 
 }

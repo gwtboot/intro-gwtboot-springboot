@@ -2,6 +2,8 @@ package com.company.crm.server;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.Date;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,7 +35,7 @@ public class PersonControllerIT {
 	void prepareData() {
 		Person person1 = new Person();
 		person1.setName("Lofi");
-		person1.setNickname("Dr. Jawa");
+		person1.setDate(new Date());
 		personRepository.save(person1);
 	}
 
