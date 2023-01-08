@@ -10,7 +10,7 @@ public class AppModule {
 
 	@Provides
 	@Singleton
-	PersonCallbackApi personApi() {
+	PersonCallbackApi personCallbackApi() {
 		return new PersonClient();
 	}
 
