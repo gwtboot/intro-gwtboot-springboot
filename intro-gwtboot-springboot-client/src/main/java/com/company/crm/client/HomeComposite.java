@@ -10,9 +10,12 @@ import javax.inject.Singleton;
 
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.datepicker.DateBox;
+import org.dominokit.domino.ui.dialogs.MessageDialog;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.lists.ListGroup;
+import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.style.Color;
 
 import com.company.crm.shared.PersonDto;
 import com.company.crm.shared.PersonException;
@@ -87,10 +90,30 @@ public class HomeComposite {
 		}
 	}
 
+	void createErrorDialog(String title) {
+		MessageDialog customColors = MessageDialog.createMessage(
+				title, "Oh snap! Change a few things up and try submitting again.",
+				() -> Notification.create("Dialog closed").show()).error().setModalColor(Color.RED)
+				.setIconColor(Color.GREY, Color.WHITE);
+
+		customColors.open();
+	}
+
+	void createWarningDialog() {
+		MessageDialog warningMessage = MessageDialog.createMessage(
+				"Warning",
+				"Warning! The list is almost empty.",
+				() -> Notification.create("Dialog closed").show())
+				.warning();
+
+		warningMessage.open();
+	}
+
 	void getPersonsWithError() {
 		try {
 			personCallbackApi.getPersonsWithError(errorList -> {
 				logger.info("Callback getPersonsWithError amount: " + errorList.size());
+				createErrorDialog("Error on callback getPersonsWithError");
 			});
 		} catch (PersonException e) {
 			logger.warning("Error: " + e.getLocalizedMessage());
@@ -115,6 +138,14 @@ public class HomeComposite {
 
 	void handleCheckOkClick(PersonDto person) {
 		personListGroup.removeItem(person);
+
+		int size = personListGroup.getItems().size();
+		if (size == 2) {
+			createWarningDialog();
+		} else if (size == 0) {
+			createErrorDialog("Error on personListGroup is empty!");
+		}
+
 		donePersonListGroup.addItem(person);
 	}
 
