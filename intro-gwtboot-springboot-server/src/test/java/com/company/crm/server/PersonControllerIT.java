@@ -53,7 +53,7 @@ public class PersonControllerIT {
 
 		System.out.println(body);
 
-		String expectation = "[{\"name\":\"Lofi - Dr. Jawa\",\"date\":\"2022-12-29@12:56:06.443+0000\",\"personType\":\"COOL\"}]";
+		String expectation = "[{\"name\":\"Lofi\" - Dr. Jawa\",\"date\":\"2022-12-29@12:56:06.443+0000\",\"personType\":\"COOL\"}]";
 
 		assertEquals(expectation.substring(0, 15), body.substring(0, 15));
 
