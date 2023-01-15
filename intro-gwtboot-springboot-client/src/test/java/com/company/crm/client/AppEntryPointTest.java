@@ -1,13 +1,9 @@
 package com.company.crm.client;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 
-import com.google.gwtmockito.GwtMockitoTestRunner;
-
-@RunWith(GwtMockitoTestRunner.class)
 public class AppEntryPointTest {
 
 	@Test
