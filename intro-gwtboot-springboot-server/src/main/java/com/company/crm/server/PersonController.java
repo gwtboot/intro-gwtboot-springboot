@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.company.crm.shared.ErrorDto;
+import com.company.crm.shared.FieldVerifier;
 import com.company.crm.shared.PersonApi;
 import com.company.crm.shared.PersonDto;
 import com.company.crm.shared.PersonEndpoint;
@@ -72,15 +73,22 @@ public class PersonController implements PersonApi {
 	public PersonDto createPerson(@RequestBody PersonDto personDto) {
 		logger.info("Controller: createPerson");
 
-		Person personNew = new Person();
-		personNew.setName(personDto.getName());
-		personNew.setDate(personDto.getDate());
+		boolean validName = FieldVerifier.isValidName(personDto.getName());
 
-		Person createPerson = personService.createPerson(personNew);
+		if (validName) {
+			Person personNew = new Person();
+			personNew.setName(personDto.getName());
+			personNew.setDate(personDto.getDate());
 
-		logger.info("Created person: " + createPerson.toString());
+			Person createPerson = personService.createPerson(personNew);
 
-		return personDto;
+			logger.info("Created person: " + createPerson.toString());
+
+			return personDto;
+		} else {
+			logger.error("Person cannot be created, invalid name: " + personDto.getName());
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Person cannot be created, invalid name.");
+		}
 	}
 
 }

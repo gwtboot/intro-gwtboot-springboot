@@ -17,6 +17,7 @@ import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 
+import com.company.crm.shared.FieldVerifier;
 import com.company.crm.shared.PersonDto;
 import com.company.crm.shared.PersonException;
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -69,24 +70,30 @@ public class HomeComposite {
 
 	void handleAddButtonClick() {
 		if (!nameTextBox.isEmpty() && !birthdateDateBox.isEmpty()) {
-			PersonDto person = new PersonDto();
-			person.setName(nameTextBox.getValue());
-			person.setDate(birthdateDateBox.getValue());
+			boolean validName = FieldVerifier.isValidName(nameTextBox.getValue());
 
-			String pattern = CONSTANTS.birthdateStringFormat();
-			DateTimeFormat dateFormat = DateTimeFormat.getFormat(pattern);
-			person.setFormattedDate(dateFormat.format(person.getDate()));
+			if (validName) {
+				PersonDto person = new PersonDto();
+				person.setName(nameTextBox.getValue());
+				person.setDate(birthdateDateBox.getValue());
 
-			personListGroup.addItem(person);
+				String pattern = CONSTANTS.birthdateStringFormat();
+				DateTimeFormat dateFormat = DateTimeFormat.getFormat(pattern);
+				person.setFormattedDate(dateFormat.format(person.getDate()));
 
-			nameTextBox.setValue("");
-			birthdateDateBox.setValue(null);
+				personListGroup.addItem(person);
 
-			createPerson(person);
+				nameTextBox.setValue("");
+				birthdateDateBox.setValue(null);
 
-			addPersonsListGroup();
+				createPerson(person);
 
-			getPersonsWithError();
+				addPersonsListGroup();
+
+				getPersonsWithError();
+			} else {
+				createErrorDialog("The name is not valid!");
+			}
 		}
 	}
 
