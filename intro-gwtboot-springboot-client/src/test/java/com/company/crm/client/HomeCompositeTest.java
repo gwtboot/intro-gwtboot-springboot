@@ -97,4 +97,19 @@ public class HomeCompositeTest {
         verify(donePersonListGroup, times(1)).addItem(personDto);
     }
 
+    @Test
+    void handle_add_button_click_with_error_dialog_less_3_chars() {
+        HomeComposite homeCompositeSpy = Mockito.spy(homeComposite);
+
+        when(nameTextBox.isEmpty()).thenReturn(false);
+        when(nameTextBox.getValue()).thenReturn("Lof");
+        when(birthdateDateBox.isEmpty()).thenReturn(false);
+
+        doNothing().when(homeCompositeSpy).createErrorDialog(anyString());
+
+        homeCompositeSpy.handleAddButtonClick();
+
+        verify(homeCompositeSpy, times(1)).createErrorDialog(anyString());
+    }
+
 }
