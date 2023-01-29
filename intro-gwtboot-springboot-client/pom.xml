@@ -97,7 +97,7 @@
 						<arg>-compileReport</arg>
 						<arg>-strict</arg>
 						<arg>-style</arg>
-						<arg>PRETTY</arg>
+						<arg>OBFUSCATED</arg>
 					</compilerArgs>
 					<devmodeArgs>
 						<arg>-logLevel</arg>
