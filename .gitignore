@@ -36,3 +36,6 @@ hs_err_pid*
 .settings
 
 target
+
+# VSCode Counter Plugin
+.VSCodeCounter
